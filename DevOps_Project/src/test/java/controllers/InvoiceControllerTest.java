@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 @WebMvcTest(InvoiceController.class)
 
-public class InvoiceControllerTest {
+ class InvoiceControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -42,7 +42,7 @@ public class InvoiceControllerTest {
 
 
     @BeforeEach
-    public void setup() {
+   void setup() {
         Invoice mockInvoice = new Invoice();
         mockInvoice.setIdInvoice(1L); // Ensure this matches your entity and JSON structure
         // Mock further properties of mockInvoice as needed for the test
@@ -53,7 +53,7 @@ public class InvoiceControllerTest {
     }
 
     @Test
-    public void retrieveInvoice_ShouldReturnInvoice() throws Exception {
+ void retrieveInvoice_ShouldReturnInvoice() throws Exception {
         mockMvc.perform(get("/invoice/{invoiceId}", 1)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

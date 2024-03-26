@@ -34,7 +34,7 @@ class InvoiceServiceImplTest {
     }
 
     @Test
-    public void retrieveAllInvoices() {
+  void retrieveAllInvoices() {
         List<Invoice> expectedInvoices = Arrays.asList(new Invoice(), new Invoice());
         when (invoiceRepository.findAll()).thenReturn(expectedInvoices);
 
