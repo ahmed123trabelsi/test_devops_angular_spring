@@ -3,7 +3,7 @@ version: "25.0.3"
 services:
   DevOpsProject:
     container_name: DevOps_Project
-    build: C:\Users\dell\Desktop\test_devops_angular_spring\DevOps_Project
+    build: ./DevOps_Project
     ports:
       - "8082:8082"
     image: DevOps_Project
@@ -27,12 +27,6 @@ services:
     ports:
       - "3310:3306"
 
-  monappangular:
-    container_name: DevOps_Project_Front
-    build:
-      context: C:\Users\dell\Desktop\test_devops_angular_spring\DevOps_Project_Front
-      dockerfile: Dockerfile
-    ports:
-      - "80:4200" 
+ 
 
   
