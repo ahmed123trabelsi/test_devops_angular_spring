@@ -26,6 +26,7 @@ import tn.esprit.devops_project.services.Iservices.IInvoiceService;
 import static org.mockito.BDDMockito.given;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -62,7 +63,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 
+    @Test
+    void getInvoices_ShouldReturnInvoices() throws Exception {
+        // Given
+        List<Invoice> invoices = Arrays.asList(new Invoice(1L, 0f, 100f, new Date(), new Date(), false, null, null), new Invoice(2L, 0f, 200f, new Date(), new Date(), false, null, null));
+        given(invoiceService.retrieveAllInvoices()).willReturn(invoices);
 
+        // When & Then
+        mockMvc.perform(get("/invoice")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(invoices.size()));
+    }
+
+    @Test
+    void getInvoicesBySupplier_ShouldReturnInvoices() throws Exception {
+        // Given
+        Long supplierId = 1L;
+        List<Invoice> invoices = Arrays.asList(new Invoice(1L, 0f, 100f, new Date(), new Date(), false, null, null), new Invoice(1L, 0f, 100f, new Date(), new Date(), false, null, null), new Invoice(2L, 0f, 200f, new Date(), new Date(), false, null, null));
+        given(invoiceService.getInvoicesBySupplier(supplierId)).willReturn(invoices);
+
+        // When & Then
+        mockMvc.perform(get("/invoice/supplier/{supplierId}", supplierId)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(invoices.size()));
+    }
 
     @Configuration
     static class TestConfig {
