@@ -2,12 +2,12 @@ version: "3.8"
 
 services:
   DevOpsProject:
-    container_name: DevOps_Project
+    container_name: devops_project
     build: .
     ports:
       - "8082:8082"
-    image: DevOps_Project
-    hostname: DevOps_Project
+    image: devops_project  # Changed to lowercase
+    hostname: devops_project
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db2_mysql:3306/devops
       - SPRING_DATASOURCE_USERNAME=root
