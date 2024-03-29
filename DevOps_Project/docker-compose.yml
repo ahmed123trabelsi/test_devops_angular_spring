@@ -3,7 +3,7 @@ version: "3.8"
 services:
   DevOpsProject:
     container_name: DevOps_Project
-    build: ./DevOps_Project
+    build: .
     ports:
       - "8082:8082"
     image: DevOps_Project
@@ -26,7 +26,3 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
     ports:
       - "3310:3306"
-
- 
-
-  
