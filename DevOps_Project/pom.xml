@@ -84,16 +84,23 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <mainClass>tn.esprit.devops_project.DevOps_ProjectSpringBootApplication</mainClass>
+                        <layout>JAR</layout>
+                    </configuration>
+                </plugin>
 
 
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <mainClass>tn.esprit.devops_project.DevOps_ProjectSpringBootApplication</mainClass>
-                            <layout>JAR</layout>
-                        </configuration>
-                    </plugin>
                 <plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
