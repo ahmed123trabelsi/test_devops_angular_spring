@@ -46,7 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
    void setup() {
         Invoice mockInvoice = new Invoice();
         mockInvoice.setIdInvoice(1L); // Ensure this matches your entity and JSON structure
-        // Mock further properties of mockInvoice as needed for the test
+        // Mock further properties of mockInvoice as needed for the test ok
 
         when(invoiceService.retrieveInvoice(anyLong())).thenReturn(mockInvoice);
 

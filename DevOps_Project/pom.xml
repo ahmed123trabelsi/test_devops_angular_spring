@@ -84,7 +84,7 @@
     <build>
         <pluginManagement>
             <plugins>
-               
+
 
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
