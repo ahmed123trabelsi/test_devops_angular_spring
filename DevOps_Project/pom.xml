@@ -82,16 +82,7 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
 
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.8</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -103,6 +94,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass> tn.esprit.devops_project.DevOps_ProjectSpringBootApplication </mainClass>
+                    <layout>JAR</layout>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
@@ -129,6 +124,16 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.8</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
     <distributionManagement>
         <repository>

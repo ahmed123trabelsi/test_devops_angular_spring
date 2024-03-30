@@ -1,28 +1,37 @@
 version: "3.8"
 
 services:
-  DevOpsProject:
-    container_name: devops_project
-    build: .
-    ports:
-      - "8082:8082"
-    image: devops_project  # Changed to lowercase
-    hostname: devops_project
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db2_mysql:3306/devops
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    depends_on:
-      - docker-mysql_2
-
-  docker-mysql_2:
-    image: "mysql:5.6"
-    container_name: db2_mysql
+  mysqldb:
+    image: mysql:5.6
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=devops
-      - MYSQL_PASSWORD=
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     ports:
-      - "3310:3306"
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+  app:
+    depends_on:
+      - mysqldb
+    build: .
+    restart: on-failure
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/devops?useSSL=false",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
