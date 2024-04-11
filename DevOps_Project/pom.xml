@@ -15,7 +15,9 @@
     <description>DevOps_Project</description>
     <properties>
         <java.version>17</java.version>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+        <sonar.tests>${project.basedir}/src/test/</sonar.tests>
     </properties>
     <dependencies>
         <dependency>
