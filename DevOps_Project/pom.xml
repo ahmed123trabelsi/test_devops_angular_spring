@@ -67,6 +67,8 @@
             <artifactId>mockito-core</artifactId>
         </dependency>
 
+
+
     </dependencies>
 
     <build>
@@ -83,13 +85,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-            </plugin>
-
-
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
